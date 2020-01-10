@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>商品标题</td>
+        <td>商品名称</td>
+        <td>秒杀结果</td>
+        <td>秒杀时间</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="entity:${list}">
+        <td th:text="${entity.productTitle}"></td>
+        <td th:text="${entity.productname}"></td>
+        <td > <span th:switch="${entity.result}">
+                <span th:case=0>秒杀成功</span>
+                <span th:case=1>秒杀失败</span>
+                <span th:case=2>秒杀完成，正在生成订单</span>
+            </span>
+        </td>
+        <td th:text="${entity.secktime}"></td>
+        <td>
+            <span th:switch="${entity.result}">
+                <span th:case=0><a href="#" th:href="@{/seckKillProductControl/preSaveSeckillProduct(id=${entity.seckillid})}" >填写订单信息</a></span>
+            </span>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

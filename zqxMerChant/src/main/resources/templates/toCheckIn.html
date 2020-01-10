@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form action="checkIn" th:method="post">
+    账号:<input th:name="account"/><br/>
+    密码:<input th:name="password"/><br/>
+    重复密码:<input th:name="repassword"/><br/>
+    手机号:<input th:name="telphone"/><br/>
+    昵称:<input th:name="name"/><br/>
+    省份:<input th:name="province"/><br/>
+    城市:<input th:name="city"/><br/>
+    地址:<input th:name="address"/><br/>
+    <input th:type="submit" th:value="提交">
+</form>
+<span th:text="${error}"/>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zqx.product.mapper.ProductInfoMapper">
+    <insert id="saveProductInfo" parameterType="com.zqx.commom.entity.ProductInfo">
+        insert into productinfo(productTitle,productName,productPictureUrl,productPrice,productDiscounts,createtime,state,merchantId,productTypeId,productInventory)
+        value(#{productTitle},#{productName},#{productPictureUrl},#{productPrice},#{productDiscounts},#{createtime},#{state},#{merchantId},#{productTypeId},#{productInventory})
+    </insert>
+
+    <select id="listProductInfo" parameterType="com.zqx.commom.vo.ProductInfoVo"
+            resultType="com.zqx.commom.entity.ProductInfo">
+        select * from productinfo
+        <where>
+            <include refid="productInfoCondition"></include>
+        </where>
+    </select>
+
+    <sql id="productInfoCondition">
+        <if test="productInfoCondition != null">
+            <if test="productInfoCondition.productName!=null and productInfoCondition.productName!=''">
+                and productName = "${productInfoCondition.productName}"
+            </if>
+            <if test="productInfoCondition.state!=null">
+                and state = "${productInfoCondition.state}"
+            </if>
+            <if test="productInfoCondition.shopId!=null and productInfoCondition.shopId!=''">
+                and shopId = "${productInfoCondition.shopId}"
+            </if>
+        </if>
+    </sql>
+
+    <update id="updateProductInfo" parameterType="com.zqx.commom.entity.ProductInfo">
+        <choose>
+            <when test="approvetime!=null">
+                UPDATE productinfo set state = #{state},updatetime=#{updatetime},approvetime=#{approvetime} where id =
+                #{id}
+            </when>
+            <otherwise>
+                UPDATE productinfo set state = #{state},updatetime=#{updatetime} where id = #{id}
+            </otherwise>
+        </choose>
+    </update>
+
+
+    <select id="findProductById" parameterType="int" resultType="com.zqx.commom.entity.ProductInfo">
+        select * from productinfo where id = #{id}
+    </select>
+</mapper>

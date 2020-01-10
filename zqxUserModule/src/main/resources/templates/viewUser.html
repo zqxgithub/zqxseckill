@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>账号</td>
+        <td>手机号</td>
+        <td>生日</td>
+        <td>qq</td>
+        <td>微信</td>
+    </tr>
+    <tr>
+        <td><span th:text="${userInfo.account}"/></td>
+        <td><span th:text="${userInfo.telphone}"/></td>
+        <td><span th:text="${userInfo.birthday}"/></td>
+        <td><span th:text="${userInfo.qq}"/></td>
+        <td><span th:text="${userInfo.weixin}"/></td>
+    </tr>
+</table>
+</body>
+</html>

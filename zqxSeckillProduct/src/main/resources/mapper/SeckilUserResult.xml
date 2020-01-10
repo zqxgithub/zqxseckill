@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zqx.seckillProduct.mapper.SeckilUserResultMapper">
+    <!--<insert id="saveSeckilUserResult" parameterType="com.youfan.entity.SeckilUserResult">-->
+        <!--<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
+        <!--insert into seckilUserResult(userid,productid,seckillid,result,resultdata,secktime,orderid) value(#{userid},#{productid},#{seckillid},#{result},#{resultdata},#{secktime},#{orderid})-->
+    <!--</insert>-->
+
+    <!--<resultMap id="seckillResutInfo" type="com.youfan.resultEntity.SeckillResutInfo" >-->
+        <!--<result column="productid" property="productid" jdbcType="BIGINT" />-->
+        <!--<result column="seckillid" property="seckillid" jdbcType="BIGINT" />-->
+        <!--<result column="result" property="result" jdbcType="VARCHAR" />-->
+        <!--<result column="resultdata" property="resultdata" jdbcType="VARCHAR" />-->
+        <!--<result column="secktime" property="secktime" jdbcType="DATE" />-->
+        <!--<result column="productName" property="productname" jdbcType="VARCHAR" />-->
+        <!--<result column="productTitle" property="productTitle" jdbcType="VARCHAR" />-->
+    <!--</resultMap>-->
+
+    <!--<select id="listSeckilUserResult" parameterType="int" resultMap="seckillResutInfo">-->
+        <!--select userid,a.productid,seckillid,result,resultdata,secktime,b.productName,b.productTitle from seckiluserresult a  LEFT JOIN seckillproduct b on a.seckillid = b.id where userid = #{id}-->
+    <!--</select>-->
+
+    <!--<update id="updateSeckilUserResultBy" parameterType="com.youfan.entity.SeckilUserResult">-->
+        <!--UPDATE seckiluserresult set result = #{result},resultdata=#{resultdata},orderid=#{orderid} where userid = #{userid} and seckillid = #{seckillid} and id = #{id}-->
+    <!--</update>-->
+
+
+</mapper>

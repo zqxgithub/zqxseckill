@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zqx.seckillProduct.mapper.SeckillProductMapper">
+
+    <insert id="saveSeckillProduct" parameterType="com.zqx.commom.entity.SeckillProductInfo">
+        insert into seckillproduct(productId,seckillNum,seckillPrice,productPrice,seckillInventory,createtime,starttime,endtime,shopId,state,productTitle,productName)
+        value(#{productId},#{seckillNum},#{seckillPrice},#{productPrice},#{seckillInventory},#{createtime},#{starttime},#{endtime},#{shopId},#{state},#{productTitle},#{productName})
+    </insert>
+
+    <select id="listSeckillInfo" parameterType="com.zqx.commom.vo.SeckillProductInfoVo"
+            resultType="com.zqx.commom.entity.SeckillProductInfo">
+        select * from seckillproduct
+        <where>
+            <include refid="seckillProductInfoCondition"></include>
+        </where>
+    </select>
+
+    <sql id="seckillProductInfoCondition">
+        <if test="seckillProductInfoCondition != null">
+            <if test="seckillProductInfoCondition.shopId!=null and seckillProductInfoCondition.shopId!=''">
+                and shopId = "${seckillProductInfoCondition.shopId}"
+            </if>
+            <if test="seckillProductInfoCondition.state!=null">
+                and state = "${seckillProductInfoCondition.state}"
+            </if>
+        </if>
+    </sql>
+
+       <update id="updateSeckillInfoState" parameterType="com.zqx.commom.entity.SeckillProductInfo">
+        <choose>
+            <when test="approvetime!=null">
+                UPDATE seckillproduct set state = #{state},approvetime=#{approvetime} where id = #{id}
+            </when>
+            <otherwise>
+                UPDATE seckillproduct set state = #{state} where id = #{id}
+            </otherwise>
+        </choose>
+    </update>
+
+    <!--<select id="findSeckillInfoById" parameterType="int" resultType="com.youfan.entity.SeckillProductInfo">-->
+        <!--select * from seckillproduct where id = #{id}-->
+    <!--</select>-->
+
+    <!--<update id="updateSeckillInfoBySeckNum" parameterType="com.youfan.entity.SeckillProductInfo">-->
+                <!--UPDATE seckillproduct set seckillnum = #{seckillnum} where id = #{id}-->
+    <!--</update>-->
+    <!--<update id="updateSeckillInfoBySecknum2" parameterType="com.youfan.entity.SeckillProductInfo">-->
+        <!--UPDATE seckillproduct set seckillnum = seckillnum - 1 where id = #{id}-->
+    <!--</update>-->
+
+    <!--<select id="selectForUpdate" parameterType="int" resultType="com.youfan.entity.SeckillProductInfo">-->
+        <!--select * from seckillproduct where id = #{id} for update;-->
+    <!--</select>-->
+    <!--<update id="updateSeckillInfoByVersion" parameterType="com.youfan.entity.SeckillProductInfo">-->
+        <!--UPDATE seckillproduct set seckillnum = #{seckillnum},seckillversion = #{seckillversion}+1 where id = #{id} and seckillversion = #{seckillversion}-->
+    <!--</update>-->
+
+
+</mapper>

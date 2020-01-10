@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="saveOrderInfo" method="post">
+    <input type="hidden" th:name="orderid" th:value="${seckillOrder.id}"></br>
+    商品标题:<span th:text="${productInfo.producttitle}"/></br>
+    商品名称:<span th:text="${productInfo.productname}"/></br>
+    支付金额:<span th:text="${seckillOrder.payamount}"/></br>
+    数量:<span th:text="${seckillOrder.num}"/></br>
+    收货人地址:<input name="receivingadress" type="text" /></br>
+    收货人电话:<input name="receivingphone" type="text" /></br>
+    收货人姓名:<input name="receivingname" type="text" /></br>
+    <input type="submit" th:name="提交">
+</form>
+</table>
+</body>
+</html>

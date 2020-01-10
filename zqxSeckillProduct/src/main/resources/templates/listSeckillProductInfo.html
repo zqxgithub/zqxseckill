@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>商品标题</td>
+        <td>商品名称</td>
+        <td>秒杀价格</td>
+        <td>商品价格</td>
+        <td>秒杀数量</td>
+        <td>秒杀库存数量</td>
+        <td>创建时间</td>
+        <td>开始时间</td>
+        <td>结束时间</td>
+        <td>商家id</td>
+        <td>状态</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="entity:${list}">
+        <td th:text="${entity.productTitle}"></td>
+        <td th:text="${entity.productName}"></td>
+        <td th:text="${entity.seckillPrice}"></td>
+        <td th:text="${entity.productPrice}"></td>
+        <td th:text="${entity.seckillNum}"></td>
+        <td th:text="${entity.seckillInventory}"></td>
+        <td th:text="${entity.createtime}"></td>
+        <td th:text="${entity.starttime}"></td>
+        <td th:text="${entity.endtime}"></td>
+        <td th:text="${entity.shopId}"></td>
+        <td th:text="${entity.state}"></td>
+        <td>
+            <span th:switch="${entity.state}">
+                <span th:case=0><a href="#" th:href="@{/seckillProductControl/updateState(state=1,id=${entity.id})}" >审核通过</a>||<a href="#" th:href="@{/seckillProductControl/updateState(state=2,id=${entity.id})}">不通过</a></span>
+                <span th:case=1><a href="#" th:href="@{/seckillProductControl/updateState(state=3,id=${entity.id})}" >上架</a>||<a href="#" th:href="@{/seckillProductControl/updateState(state=4,id=${entity.id})}">下架</a></span>
+            </span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form action="applyShop" th:method="post">
+    商家id:<input th:name="merchantId"/><br/>
+    店铺名称:<input th:name="shopName"/><br/>
+    店铺描述:<textarea th:name="shopDescription"></textarea><br/>
+    店铺经营范围:<textarea th:name="shopBusinessScope"/></textarea><br/>
+    省:<input th:name="province"/><br/>
+    市:<input th:name="city"/><br/>
+    营业执照:<input th:name="businessLicense"/><br/>
+    <input th:type="submit" th:value="提交">
+</form>
+<span th:text="${error}"/>
+</body>
+</html>

@@ -1,0 +1,54 @@
+server:
+  port: 8086
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  type-aliases-package: com.zqx.commom.entity
+
+spring:
+  application:
+    name: zqxSeckillProduct
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zqxseckill?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=false&allowMultiQueries=true&autoReconnect=true&serverTimezone=CTT
+    username: root
+    password: 123456
+  hikari:
+    minimum-idle: 5
+    # 空闲连接存活最大时间，默认600000（10分钟）
+    idle-timeout: 180000
+    # 连接池最大连接数，默认是10
+    maximum-pool-size: 10
+    # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+    auto-commit: true
+    # 连接池名称
+    pool-name: MyHikariCP
+    # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+    max-lifetime: 1800000
+    # 数据库连接超时时间,默认30秒，即30000
+    connection-timeout: 30000
+    connection-test-query: SELECT 1
+
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: utf-8
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+
+  mvc:
+    static-path-pattern: /static/**
+    jackson:
+      time-zone: GMT+8
+

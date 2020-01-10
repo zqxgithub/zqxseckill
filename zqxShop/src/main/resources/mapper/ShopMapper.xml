@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zqx.shop.mapper.ShopMapper">
+    <insert id="saveShopInfo" parameterType="com.zqx.commom.entity.ShopInfo">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into
+        zqxshop(merchantId,shopName,shopDescription,shopBusinessScope,province,city,businessLicense,createtime,state)
+        value(#{merchantId},#{shopName},#{shopDescription},#{shopBusinessScope},#{province},#{city},#{businessLicense},#{createtime},#{state})
+    </insert>
+    <select id="listShopInfoBy" parameterType="com.zqx.commom.vo.ShopInfoVo" resultType="com.zqx.commom.entity.ShopInfo">
+        select * from zqxshop
+        <where>
+            <include refid="shopInfoCondition"></include>
+        </where>
+    </select>
+
+    <sql id="shopInfoCondition">
+        <if test="shopInfoCondition != null">
+            <if test="shopInfoCondition.shopName!=null and shopInfoCondition.shopName!=''">
+                and shopName = "${shopInfoCondition.shopName}"
+            </if>
+            <if test="shopInfoCondition.state!=null">
+                and state = "${shopInfoCondition.state}"
+            </if>
+        </if>
+    </sql>
+
+    <update id="updateInfoBy" parameterType="com.zqx.commom.entity.ShopInfo">
+        UPDATE zqxshop set state = #{state} where id = #{id}
+    </update>
+
+
+</mapper>
